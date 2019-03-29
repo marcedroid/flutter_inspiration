@@ -56,6 +56,7 @@ Widget _sliverAppBar(BuildContext context, int heroImage) {
     ],
 
     flexibleSpace: FlexibleSpaceBar(
+      collapseMode: CollapseMode.pin,
       background: ClipRRect(
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(50.0),

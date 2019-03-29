@@ -76,9 +76,23 @@ flutter:
   fonts:
     - family: Lato
       fonts:
-        - asset: assets/images/fonts/Lato-Regular.ttf
-        - asset: assets/images/fonts/Lato-Black.ttf
+        - asset: assets/images/fonts/lato/Lato-Light.ttf
+          weight: 300
+        - asset: assets/images/fonts/lato/Lato-Regular.ttf
+          weight: 400
+        - asset: assets/images/fonts/lato/Lato-Bold.ttf
+          weight: 800
+        - asset: assets/images/fonts/lato/Lato-Black.ttf
           weight: 900
     - family: Roboto
       fonts:
-        - asset: assets/images/fonts/Roboto-Regular.ttf
+        - asset: assets/images/fonts/roboto/Roboto-Thin.ttf
+          weight: 100
+        - asset: assets/images/fonts/roboto/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/images/fonts/roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/images/fonts/roboto/Roboto-Bold.ttf
+          weight: 800
+        - asset: assets/images/fonts/roboto/Roboto-Black.ttf
+          weight: 900
