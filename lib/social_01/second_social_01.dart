@@ -2,9 +2,46 @@ import 'package:flutter/material.dart';
 import 'custom_values.dart';
 import 'my_bottom_navigation.dart';
 
-class SecondSocial01 extends StatelessWidget {
+class SecondSocial01 extends StatefulWidget {
   final int heroImage;
   SecondSocial01({this.heroImage});
+
+  @override
+  _SecondSocial01State createState() => _SecondSocial01State();
+}
+
+class _SecondSocial01State extends State<SecondSocial01> with SingleTickerProviderStateMixin {
+
+  Animation transformationAnim;
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = AnimationController(
+      duration: Duration(milliseconds: 400),
+      vsync: this,
+    );
+
+    transformationAnim = Tween(
+      begin: Radius.circular(0.0),
+      end: Radius.circular(50.0),
+    ).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: Curves.easeInCubic
+      )
+    );
+
+    animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +51,16 @@ class SecondSocial01 extends StatelessWidget {
       body: CustomScrollView(
         scrollDirection: Axis.vertical,
         slivers: <Widget>[
-          _sliverAppBar(context, heroImage),
-          _sliverContent()
+          _sliverAppBar(context, widget.heroImage, transformationAnim),
+          _sliverContent(),
         ],
       ),
     );
   }
+
 }
 
-Widget _sliverAppBar(BuildContext context, int heroImage) {
+Widget _sliverAppBar(BuildContext context, int heroImage, Animation transformationAnim) {
   return SliverAppBar(
     primary: true,
     floating: false,
@@ -57,21 +95,27 @@ Widget _sliverAppBar(BuildContext context, int heroImage) {
 
     flexibleSpace: FlexibleSpaceBar(
       collapseMode: CollapseMode.pin,
-      background: ClipRRect(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(50.0),
-            bottomRight: Radius.circular(50.0)
-        ),
-        child: Hero(
-          transitionOnUserGestures: false,
-          tag: 'HeroImage$heroImage',
-          child: Image(
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-              image: AssetImage(
-                  'assets/images/social_01/image-${heroImage + 1}.jpg')
-          ),
-        ),
+      background: AnimatedBuilder(
+        animation: transformationAnim,
+        builder: (BuildContext context, Widget child) {
+          return ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomLeft: transformationAnim.value,
+              bottomRight: transformationAnim.value
+            ),
+            child: Hero(
+              transitionOnUserGestures: false,
+              tag: 'HeroImage$heroImage',
+              child: Image(
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
+                  image: AssetImage(
+                      'assets/images/social_01/image-${heroImage + 1}.jpg'
+                  )
+              ),
+            ),
+          );
+        }
       ),
     ),
   );
