@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'my_appbar.dart';
 import 'custom_values.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class MainSocial01 extends StatelessWidget {
   @override
@@ -120,7 +121,7 @@ Widget _profile(){
 Widget _counts(BuildContext context){
   return Container(
     padding: EdgeInsets.symmetric(
-        vertical: 35.0,
+        vertical: 40.0,
         horizontal: 40.0
     ),
     child: Row(
@@ -177,31 +178,38 @@ Widget _counts(BuildContext context){
 
 Widget _feedImage(){
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 25.0),
-    child: GridView.count(
-      crossAxisCount: 2,
+    margin: EdgeInsets.only(
+      left: 25.0,
+      right: 25.0,
+      top: 15.0
+    ),
+    child: StaggeredGridView.countBuilder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      children: <Widget>[
-        _ImageGridItem('assets/images/social_01/image-1.jpg'),
-        _ImageGridItem('assets/images/social_01/image-2.jpg'),
-        _ImageGridItem('assets/images/social_01/image-3.jpg'),
-        _ImageGridItem('assets/images/social_01/image-4.jpg'),
-        _ImageGridItem('assets/images/social_01/image-5.jpg'),
-        _ImageGridItem('assets/images/social_01/image-6.jpg'),
-        _ImageGridItem('assets/images/social_01/image-7.jpg'),
-        _ImageGridItem('assets/images/social_01/image-8.jpg'),
-        _ImageGridItem('assets/images/social_01/image-9.jpg'),
-        _ImageGridItem('assets/images/social_01/image-10.jpg'),
-      ],
-    ),
+      itemCount: 10,
+      crossAxisCount: 2,
+      crossAxisSpacing: 10.0,
+      mainAxisSpacing: 10.0,
+      itemBuilder: (BuildContext context, int index) => _ImageGridItem(
+          'assets/images/social_01/image-${index+1}.jpg', context
+      ),
+      staggeredTileBuilder: (int index) => StaggeredTile.fit(1)
+    )
   );
 }
 
-Widget _ImageGridItem(String imagePath) {
-  return Image(
-    image: AssetImage(imagePath),
-    fit: BoxFit.cover,
+Widget _ImageGridItem(String imagePath, BuildContext context) {
+  return GestureDetector(
+    child: ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      child: Image(
+          image: AssetImage(imagePath)
+      ),
+    ),
+
+    onTap: (){
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text(imagePath)));
+    },
   );
 }
 
