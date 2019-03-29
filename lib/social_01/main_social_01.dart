@@ -72,7 +72,6 @@ Widget _profile(){
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontFamily: 'Lato',
-                      //letterSpacing: 1.0,
                       color: grey,
                       fontSize: 18.0
                   ),

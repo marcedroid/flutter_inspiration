@@ -37,13 +37,13 @@ Widget _sliverAppBar(BuildContext context, int heroImage) {
     brightness: Brightness.light,
     backgroundColor: Colors.white,
     leading: IconButton(
-        icon: Icon(
-          Icons.arrow_back,
-          color: purpleGrey,
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-        }
+      icon: Icon(
+        Icons.arrow_back,
+        color: purpleGrey,
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
     ),
     actions: <Widget>[
       Container(
@@ -91,7 +91,8 @@ Widget _sliverContent(){
         children: <Widget>[
           _titleAndIcon(),
           _loremIpsum(),
-          _tags()
+          _tags(),
+          _rowButtons()
         ],
       ),
     ),
@@ -236,5 +237,40 @@ Widget _tags(){
         ),
       )
     ],
+  );
+}
+
+Widget _rowButtons() {
+  return Container(
+    margin: EdgeInsets.only(top: 25.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Icon(
+              Icons.favorite,
+              color: darkGrey,
+              size: 26.0,
+            ),
+            SizedBox(width: 18.0,),
+            Icon(
+              Icons.mode_comment,
+              color: darkGrey,
+              size: 26.0,
+            )
+          ],
+        ),
+
+        Icon(
+          Icons.bookmark,
+          color: darkGrey,
+          size: 30.0,
+        )
+      ],
+    ),
   );
 }
