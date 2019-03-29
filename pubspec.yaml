@@ -77,6 +77,8 @@ flutter:
     - family: Lato
       fonts:
         - asset: assets/images/fonts/Lato-Regular.ttf
+        - asset: assets/images/fonts/Lato-Black.ttf
+          weight: 900
     - family: Roboto
       fonts:
         - asset: assets/images/fonts/Roboto-Regular.ttf
