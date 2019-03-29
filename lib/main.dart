@@ -5,6 +5,6 @@ void main() => runApp(
   MaterialApp(
     title: 'Inspiración',
     theme: ThemeData.light(),
-    home: Menu(),
+    home: Menu()
   )
 );
