@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'my_appbar.dart';
 import 'custom_values.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'my_bottom_navigation.dart';
 
 class MainSocial01 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: MyAppBar(context: context,),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -16,10 +18,12 @@ class MainSocial01 extends StatelessWidget {
           _feedImage()
         ],
       ),
-      backgroundColor: Colors.white,
+      bottomNavigationBar: MyBottomNavigation()
     );
   }//Build
 }
+
+
 
 Widget _profile(){
   return Padding(
