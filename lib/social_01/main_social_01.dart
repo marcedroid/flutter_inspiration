@@ -3,6 +3,7 @@ import 'my_appbar.dart';
 import 'custom_values.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'my_bottom_navigation.dart';
+import 'second_social_01.dart';
 
 class MainSocial01 extends StatelessWidget {
   @override
@@ -42,33 +43,39 @@ Widget _profile(){
           backgroundImage: AssetImage('assets/images/social_01/profile.jpg'),
         ),
 
-        SizedBox(width: 30.0,),
+        SizedBox(width: 25.0,),
 
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "Floyd Hayes",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontFamily: 'Lato',
-                    color: black,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 26.0
+              Container(
+                padding: EdgeInsets.only(left: 5.0),
+                child: Text(
+                  "Floyd Hayes",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontFamily: 'Lato',
+                      color: black,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 26.0
+                  ),
                 ),
               ),
 
               SizedBox(height: 5.0,),
 
-              Text(
-                "Photographer",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontFamily: 'Lato',
-                    //letterSpacing: 1.0,
-                    color: grey,
-                    fontSize: 18.0
+              Container(
+                padding: EdgeInsets.only(left: 5.0),
+                child: Text(
+                  "Photographer",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontFamily: 'Lato',
+                      //letterSpacing: 1.0,
+                      color: grey,
+                      fontSize: 18.0
+                  ),
                 ),
               ),
 
@@ -183,8 +190,8 @@ Widget _counts(BuildContext context){
 Widget _feedImage(){
   return Container(
     margin: EdgeInsets.only(
-      left: 25.0,
-      right: 25.0,
+      left: 30.0,
+      right: 30.0,
       top: 15.0
     ),
     child: StaggeredGridView.countBuilder(
@@ -195,25 +202,29 @@ Widget _feedImage(){
       crossAxisSpacing: 10.0,
       mainAxisSpacing: 10.0,
       itemBuilder: (BuildContext context, int index) => _ImageGridItem(
-          'assets/images/social_01/image-${index+1}.jpg', context
+          context, 'assets/images/social_01/image-${index+1}.jpg', index
       ),
       staggeredTileBuilder: (int index) => StaggeredTile.fit(1)
     )
   );
 }
 
-Widget _ImageGridItem(String imagePath, BuildContext context) {
+Widget _ImageGridItem(BuildContext context, String imagePath, int index) {
   return GestureDetector(
-    child: ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      child: Image(
+    child: Hero(
+      transitionOnUserGestures: false,
+      tag: "HeroImage$index",
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        child: Image(
           image: AssetImage(imagePath)
+        ),
       ),
     ),
 
-    onTap: (){
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text(imagePath)));
-    },
+    onTap: () => Navigator.push(context, MaterialPageRoute(
+      builder: (context) => SecondSocial01(heroImage: index,)
+    )),
   );
 }
 
