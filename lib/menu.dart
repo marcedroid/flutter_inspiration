@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inspiration_design/social_01/main_social_01.dart';
+import 'package:inspiration_design/shoes_list/main_shoes.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -11,7 +12,8 @@ class Menu extends StatelessWidget {
       body: Container(
         child: ListView(
           children: <Widget>[
-            menuItem("Social 01", context, MainSocial01())
+            menuItem("Social 01", context, MainSocial01()),
+            menuItem("Shoes List", context, MainShoes())
           ],
         ),
       ),
