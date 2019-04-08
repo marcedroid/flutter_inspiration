@@ -48,6 +48,7 @@ flutter:
   assets:
     - assets/images/social_01/
     - assets/images/shoes_list/
+    - assets/images/instagram_01/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
@@ -77,23 +78,23 @@ flutter:
   fonts:
     - family: Lato
       fonts:
-        - asset: assets/images/fonts/lato/Lato-Light.ttf
+        - asset: assets/fonts/lato/Lato-Light.ttf
           weight: 300
-        - asset: assets/images/fonts/lato/Lato-Regular.ttf
+        - asset: assets/fonts/lato/Lato-Regular.ttf
           weight: 400
-        - asset: assets/images/fonts/lato/Lato-Bold.ttf
+        - asset: assets/fonts/lato/Lato-Bold.ttf
           weight: 800
-        - asset: assets/images/fonts/lato/Lato-Black.ttf
+        - asset: assets/fonts/lato/Lato-Black.ttf
           weight: 900
     - family: Roboto
       fonts:
-        - asset: assets/images/fonts/roboto/Roboto-Thin.ttf
+        - asset: assets/fonts/roboto/Roboto-Thin.ttf
           weight: 100
-        - asset: assets/images/fonts/roboto/Roboto-Light.ttf
+        - asset: assets/fonts/roboto/Roboto-Light.ttf
           weight: 300
-        - asset: assets/images/fonts/roboto/Roboto-Regular.ttf
+        - asset: assets/fonts/roboto/Roboto-Regular.ttf
           weight: 400
-        - asset: assets/images/fonts/roboto/Roboto-Bold.ttf
+        - asset: assets/fonts/roboto/Roboto-Bold.ttf
           weight: 800
-        - asset: assets/images/fonts/roboto/Roboto-Black.ttf
+        - asset: assets/fonts/roboto/Roboto-Black.ttf
           weight: 900
