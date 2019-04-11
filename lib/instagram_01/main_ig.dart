@@ -8,64 +8,19 @@ class MainIg extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: _appBar(context),
 
-      body: Center(
-        child: Text('Center'),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          _header(),
+          _numbers(),
+          _follow(),
+          _listCircles()
+        ],
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: SizedBox(
-        width: 65.0,
-        height: 65.0,
-        child: FloatingActionButton(
-          elevation: 5.0,
-          backgroundColor: Colors.transparent,
-          onPressed: (){},
-          child: Stack(
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [
-                          clOrange,
-                          clPinkPurple
-                        ],
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight
-                    ),
-                    shape: BoxShape.circle
-                ),
-              ),
-
-              Center(
-                child: Icon(
-                  Icons.add,
-                  size: 30.0,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-
-      bottomNavigationBar: BottomAppBar(
-        notchMargin: 10.0,
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            _navigationItem(false, Icons.home),
-            _navigationItem(false, Icons.search),
-            Expanded(
-              child: SizedBox(
-                height: 60.0,
-              ),
-            ),
-            _navigationItem(true, Icons.favorite_border),
-            _navigationItem(false, Icons.person_outline),
-          ],
-        ),
-      ),
+      floatingActionButton: __floatingActionButton(),
+      bottomNavigationBar: _bottomAppBar(),
     );
   }
 }
@@ -83,7 +38,7 @@ Widget _appBar(context){
     ),
 
     title: Text(
-      'Kylie jenner',
+      'kylie jenner',
       style: TextStyle(
           color: clFontBlack
       ),
@@ -104,6 +59,413 @@ Widget _appBar(context){
     elevation: 0.0,
   );
 }
+
+Widget _header(){
+  return Container(
+    margin: EdgeInsets.only(
+      left: 35.0,
+      right: 35.0,
+      top: 15.0,
+      bottom: 10.0
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          width: 90.0,
+          height: 90.0,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.black38,
+                blurRadius: 14.0,
+                offset: Offset(0.0, 6.0)
+              )
+            ],
+            image: DecorationImage(
+              image: AssetImage(pathImage + 'profile.jpg')
+            )
+          ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.only(
+            left: 30.0,
+          ),
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.start,
+            spacing: 5.0,
+            direction: Axis.vertical,
+            children: <Widget>[
+              Text(
+                'kylie jenner',
+                style: fntRoboto.copyWith(
+                  color: clFontBlack,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500
+                ),
+              ),
+
+              Text(
+                'Fashion',
+                style: fntRoboto.copyWith(
+                  color: clFontLightGrey,
+                  fontWeight: FontWeight.w300
+                ),
+              ),
+
+              Text(
+                'Models',
+                style: fntRoboto.copyWith(
+                  color: clFontGrey
+                ),
+              ),
+
+              Text(
+                'www.thekyliejenner.com',
+                style: fntRoboto.copyWith(
+                  color: clLink
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    ),
+  );
+}//header
+
+Widget _numbers(){
+  return Container(
+    margin: EdgeInsets.symmetric(
+      horizontal: 35.0,
+      vertical: 30.0
+    ),
+    child: Column(
+      children: <Widget>[
+        Divider(),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 20.0
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              _wrapNumbers('490', 'Posts'),
+              _wrapNumbers('120k', 'Followers'),
+              _wrapNumbers('80k', 'Following'),
+            ],
+          ),
+        ),
+        Divider(),
+      ],
+    ),
+  );
+}//numbers
+Widget _wrapNumbers(String customNumber, String customtext){
+  return Wrap(
+    direction: Axis.vertical,
+    crossAxisAlignment: WrapCrossAlignment.center,
+    spacing: 8.0,
+    children: <Widget>[
+      Text(
+        customNumber,
+        style: fntRoboto.copyWith(
+            color: clFontBlack,
+            fontWeight: FontWeight.w700,
+            fontSize: 18.0
+        ),
+      ),
+
+      Text(
+        customtext,
+        style: fntRoboto.copyWith(
+            color: clFontLightGrey,
+            letterSpacing: 1.0,
+            fontSize: 13.0
+        ),
+      )
+    ],
+  );
+}
+
+Widget _follow(){
+  return Container(
+    margin: EdgeInsets.symmetric(
+      horizontal: 35.0
+    ),
+    child: Row(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            height: 56.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              gradient: LinearGradient(
+                colors: [
+                  clBlue, clPurple
+                ]
+              )
+            ),
+            child: FlatButton(
+              onPressed: (){},
+              textColor: Colors.white,
+              child: Text(
+                'Follow',
+                style: fntRoboto.copyWith(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w700
+                ),
+              ),
+            ),
+          )
+        ),
+
+        SizedBox(width: 20.0),
+
+        Container(
+          height: 56.0,
+          width: 75.0,
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: clLightGrey,
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          ),
+          child: FlatButton(
+            textColor: Colors.white,
+            onPressed: (){},
+            child: Icon(
+              Icons.send,
+              color: clGrey,
+            )
+          ),
+        )
+      ],
+    ),
+  );
+}//_follow
+
+Widget _listCircles(){
+  return Container(
+    height: 80.0,
+    margin: EdgeInsets.symmetric(
+      vertical: 40.0
+    ),
+    child: ListView(
+      scrollDirection: Axis.horizontal,
+      children: <Widget>[
+        _miniCircle(
+            showPlus: true, imagePath: pathImage + 'mini-1.jpeg',
+            marginLeft: 35.0, isBordered: false
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-2.jpeg',
+            marginLeft: 15.0, isBordered: false
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-3.jpeg',
+            marginLeft: 15.0, isBordered: false
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-4.jpeg',
+            marginLeft: 15.0, isBordered: true
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-5.jpeg',
+            marginLeft: 15.0, isBordered: true
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-6.jpeg',
+            marginLeft: 15.0, isBordered: true
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-7.jpeg',
+            marginLeft: 15.0, isBordered: false
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-8.jpeg',
+            marginLeft: 15.0, isBordered: false
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-9.jpeg',
+            marginLeft: 15.0, isBordered: true
+        ),
+        _miniCircle(
+            showPlus: false, imagePath: pathImage + 'mini-10.jpeg',
+            marginLeft: 15.0, isBordered: true
+        ),
+      ],
+    ),
+  );
+}//_listCircles
+Widget _miniCircle({
+    bool showPlus, String imagePath, double marginLeft, bool isBordered
+  }){
+
+  if(isBordered){
+    return Container(
+      margin: EdgeInsets.only(
+          left: marginLeft,
+          right: 15.0
+      ),
+      width: 60.0,
+      height: 60.0,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black38,
+                blurRadius: 8.0,
+                offset: Offset(0.0, 2.0)
+            )
+          ],
+          gradient: LinearGradient(
+              colors: [
+                clOrange, clPinkPurple
+              ],
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight
+          )
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            width: 56.0,
+            height: 56.0,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: AssetImage(imagePath)
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 2.0
+              )
+            ),
+          )
+        ],
+      ),
+    );
+  }else{
+    return Container(
+      margin: EdgeInsets.only(
+          left: marginLeft,
+          right: 15.0
+      ),
+      width: 60.0,
+      height: 60.0,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black38,
+                blurRadius: 8.0,
+                offset: Offset(0.0, 2.0)
+            )
+          ],
+      ),
+      child: Stack(
+        overflow: Overflow.visible,
+        alignment: Alignment.center,
+        children: <Widget>[
+          Container(
+            width: 60.0,
+            height: 60.0,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: AssetImage(imagePath)
+                )
+            ),
+          ),
+          
+          showPlus ? Positioned(
+            bottom: 5.0,
+            right: -3.0,
+            child: Container(
+              width: 24.0,
+              height: 24.0,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: clBlack,
+                  border: Border.all(
+                      color: Colors.white,
+                      width: 2.0
+                  )
+              ),
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 16.0,
+              ),
+            ),
+          ):SizedBox(height: 0.0,)
+        ],
+      ),
+    );
+  }
+}//_miniCircle
+
+Widget __floatingActionButton(){
+  return SizedBox(
+    width: 65.0,
+    height: 65.0,
+    child: FloatingActionButton(
+      elevation: 5.0,
+      backgroundColor: Colors.transparent,
+      onPressed: (){},
+      child: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      clOrange,
+                      clPinkPurple
+                    ],
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight
+                ),
+                shape: BoxShape.circle
+            ),
+          ),
+
+          Center(
+            child: Icon(
+              Icons.add,
+              size: 30.0,
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}//_floatingActionButton
+
+Widget _bottomAppBar(){
+  return BottomAppBar(
+    notchMargin: 10.0,
+    shape: CircularNotchedRectangle(),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        _navigationItem(false, Icons.home),
+        _navigationItem(false, Icons.search),
+        Expanded(
+          child: SizedBox(
+            height: 60.0,
+          ),
+        ),
+        _navigationItem(true, Icons.favorite_border),
+        _navigationItem(false, Icons.person_outline),
+      ],
+    ),
+  );
+}//_bottomAppBar
 
 Widget _navigationItem(bool showDot, IconData icon){
   return Expanded(
@@ -141,67 +503,5 @@ Widget _navigationItem(bool showDot, IconData icon){
         ),
       ),
     ),
-  );
-}
-
-Widget _bottomNavigationBar(){
-  return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      currentIndex: 0,
-      items: [
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: clBlack,
-            ),
-            title: Container(
-              height: 4.0,
-              margin: EdgeInsets.only(top: 5.0),
-            )
-        ),
-
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: clBlack,
-            ),
-            title: Container(
-              height: 4.0,
-              margin: EdgeInsets.only(top: 5.0),
-            )
-        ),
-
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite_border,
-              color: clBlack,
-            ),
-            title: Container(
-              margin: EdgeInsets.only(top: 5.0),
-              height: 4.0,
-              child: Center(
-                child: Container(
-                  width: 4.0,
-                  height: 4.0,
-                  decoration: BoxDecoration(
-                      color: clRed,
-                      shape: BoxShape.circle
-                  ),
-                ),
-              ),
-            )
-        ),
-
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline,
-              color: clBlack,
-            ),
-            title: Container(
-              height: 4.0,
-              margin: EdgeInsets.only(top: 5.0),
-            )
-        )
-      ]
   );
 }

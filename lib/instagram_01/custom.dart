@@ -16,3 +16,10 @@ Color clRed = const Color(0xffed4956);
 Color clDarkPurple = const Color(0xff18041d);
 Color clOrange = const Color(0xfffc9f40);
 Color clPinkPurple = const Color(0xffc0318e);
+
+const fntRoboto = const TextStyle(
+  fontFamily: 'Roboto',
+  fontSize: 14.0
+);
+
+const String pathImage = "assets/images/instagram_01/";
