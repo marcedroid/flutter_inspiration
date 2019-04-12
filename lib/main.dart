@@ -8,7 +8,7 @@ void main(){
   //debugPaintSizeEnabled = false,
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       title: 'Inspiración',
       theme: ThemeData.light(),
       home: Menu()

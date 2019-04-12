@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'single_image.dart';
 import 'custom.dart';
 
 class MainIg extends StatelessWidget {
@@ -14,7 +16,8 @@ class MainIg extends StatelessWidget {
           _header(),
           _numbers(),
           _follow(),
-          _listCircles()
+          _listCircles(),
+          _gridPhotos(context)
         ],
       ),
 
@@ -408,6 +411,68 @@ Widget _miniCircle({
     );
   }
 }//_miniCircle
+
+Widget _gridPhotos(BuildContext context){
+  return Container(
+    margin: EdgeInsets.only(
+      left: 20.0,
+      right: 20.0,
+      bottom: 10.0
+    ),
+    child: StaggeredGridView.count(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisSpacing: 10.0,
+      mainAxisSpacing: 10.0,
+      crossAxisCount: 3,
+      children: <Widget>[
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-1.jpg', index: 1),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-2.jpg', index: 2),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-3.jpg', index: 3),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-4.jpg', index: 4),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-5.jpg', index: 5),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-6.jpg', index: 6),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-7.jpg', index: 7),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-8.jpg', index: 8),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-9.jpg', index: 9),
+        _imagePhoto(context: context, imageUrl: '${pathImage}photo-10.jpg', index: 10),
+      ],
+      staggeredTiles: [
+        StaggeredTile.count(1, 1),
+        StaggeredTile.count(1, 1),
+        StaggeredTile.count(1, 1),
+        StaggeredTile.count(1, 1),
+        StaggeredTile.count(2, 2),
+        StaggeredTile.count(1, 1),
+        StaggeredTile.count(2, 2),
+        StaggeredTile.count(1, 1),
+        StaggeredTile.count(1, 1),
+        StaggeredTile.count(3, 3),
+      ],
+    )
+  );
+}//_gridPhotos
+
+Widget _imagePhoto({
+  BuildContext context, String imageUrl, int index
+}){
+  return ClipRRect(
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    child: GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => SingleImage(index)
+        ));
+      },
+      child: Hero(
+        tag: 'photo-$index',
+        child: Image(
+          image: AssetImage(imageUrl)
+        ),
+      ),
+    ),
+  );
+}//_imagePhoto
 
 Widget __floatingActionButton(){
   return SizedBox(
