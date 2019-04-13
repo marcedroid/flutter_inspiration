@@ -52,9 +52,10 @@ class MainIg extends StatelessWidget {
           ),
         ),
 
-        Positioned(
-          child: Container(
-            margin:EdgeInsets.only(top: MediaQuery.of(context).size.height - 90.0),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: SizedBox(
+            height: 94.0,
             child: Scaffold(
               backgroundColor: Colors.transparent,
               floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
