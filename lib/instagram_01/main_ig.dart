@@ -4,8 +4,16 @@ import 'single_image.dart';
 import 'custom.dart';
 
 class MainIg extends StatelessWidget {
+
+  ScrollController _scrollController = new ScrollController();
+
+  List<Widget> _items = new List.generate(60, (index) {
+    return new Text("item $index");
+  });
+
   @override
   Widget build(BuildContext context) {
+    /*
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(context),
@@ -23,7 +31,39 @@ class MainIg extends StatelessWidget {
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: __floatingActionButton(),
-      bottomNavigationBar: _bottomAppBar(),
+      bottomNavigationBar: _bottomAppBar()
+    );
+    */
+    return Stack(
+      children: <Widget>[
+        Scaffold(
+          backgroundColor: Colors.white,
+          appBar: _appBar(context),
+
+          body: ListView(
+            scrollDirection: Axis.vertical,
+            children: <Widget>[
+              _header(),
+              _numbers(),
+              _follow(),
+              _listCircles(),
+              _gridPhotos(context)
+            ],
+          ),
+        ),
+
+        Positioned(
+          child: Container(
+            margin:EdgeInsets.only(top: MediaQuery.of(context).size.height - 90.0),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+              floatingActionButton: __floatingActionButton(),
+              bottomNavigationBar: _bottomAppBar()
+            ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -417,7 +457,7 @@ Widget _gridPhotos(BuildContext context){
     margin: EdgeInsets.only(
       left: 20.0,
       right: 20.0,
-      bottom: 10.0
+      bottom: 60.0
     ),
     child: StaggeredGridView.count(
       physics: NeverScrollableScrollPhysics(),
