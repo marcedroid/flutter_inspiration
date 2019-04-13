@@ -69,7 +69,7 @@ Widget _header(){
       left: 35.0,
       right: 35.0,
       top: 15.0,
-      bottom: 10.0
+      bottom: 5.0
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -143,7 +143,7 @@ Widget _numbers(){
   return Container(
     margin: EdgeInsets.symmetric(
       horizontal: 35.0,
-      vertical: 30.0
+      vertical: 20.0
     ),
     child: Column(
       children: <Widget>[
@@ -254,7 +254,7 @@ Widget _listCircles(){
   return Container(
     height: 80.0,
     margin: EdgeInsets.symmetric(
-      vertical: 40.0
+      vertical: 20.0
     ),
     child: ListView(
       scrollDirection: Axis.horizontal,

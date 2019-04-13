@@ -49,6 +49,7 @@ flutter:
     - assets/images/social_01/
     - assets/images/shoes_list/
     - assets/images/instagram_01/
+    - assets/images/me.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
