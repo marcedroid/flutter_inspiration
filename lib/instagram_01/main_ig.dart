@@ -5,12 +5,6 @@ import 'custom.dart';
 
 class MainIg extends StatelessWidget {
 
-  ScrollController _scrollController = new ScrollController();
-
-  List<Widget> _items = new List.generate(60, (index) {
-    return new Text("item $index");
-  });
-
   @override
   Widget build(BuildContext context) {
     /*

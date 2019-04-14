@@ -20,16 +20,104 @@ class _SingleImageState extends State<SingleImage> {
         slivers: <Widget>[
           _sliverAppBar(context: context, imageId: widget.imageId),
 
-          SliverToBoxAdapter(
-            child: Container(
-              child: Text("Box", style: TextStyle(color: Colors.white),),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                SizedBox(height: 20.0,),
+                _listItem(
+                  image: 'w1.jpg', name: 'Janet Martin',
+                  comment: 'Our blue top is available!', likes: ''
+                ),
+                _listItem(
+                    image: 'w2.jpg', name: 'Zarela Reed',
+                    comment: 'Great 🔥 🔥', likes: '3 likes - Reply'
+                ),
+                _listItem(
+                    image: 'm1.jpg', name: 'Jake Rachel',
+                    comment: 'Lorem ipsum dolor sit amet', likes: ''
+                ),
+                _listItem(
+                    image: 'w3.jpg', name: 'Eusebia Kresge',
+                    comment: '😍 😍', likes: '10 likes - Reoply'
+                ),
+                _listItem(
+                    image: 'm2.jpg', name: 'John Meis',
+                    comment: 'Pro ex nonumes apeirian quaestio!', likes: '2 likes - Reply'
+                )
+              ]
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: _bottomNavigationBar(),
     );
   }
+}
+
+Widget _listItem({String image, String name, String comment, String likes}){
+  return ListTile(
+    contentPadding: EdgeInsets.only(
+      left: 30.0,
+      right: 20.0,
+      top: 10.0,
+      bottom: 10.0
+    ),
+    leading: Container(
+      margin: EdgeInsets.zero,
+      width: 50.0,
+      height: 50.0,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+              color: Colors.white,
+              width: 2.0
+          ),
+          image: DecorationImage(
+              image: AssetImage('assets/images/people/$image'),
+              fit: BoxFit.cover
+          )
+      ),
+    ),
+
+    title: Text(
+      name,
+      style: fntRoboto.copyWith(
+        color: clFontLightPurple
+      ),
+    ),
+
+    subtitle: Wrap(
+      direction: Axis.vertical,
+      spacing: 4.0,
+      children: <Widget>[
+        SizedBox(height: 2.0),
+
+        Text(
+          comment,
+          style: fntRoboto.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.w700
+          ),
+        ),
+
+        Text(
+          likes,
+          style: fntRoboto.copyWith(
+            color: clFontLightPurple,
+            fontSize: 12.0
+          ),
+        )
+      ],
+    ),
+
+    trailing: IconButton(
+      icon: Icon(
+        Icons.favorite_border,
+        color: clGrey,
+      ),
+      onPressed: (){}
+    ),
+  );
 }
 
 Widget _sliverAppBar({
@@ -41,6 +129,7 @@ Widget _sliverAppBar({
     floating: false,
     pinned: false,
     snap: false,
+
     brightness: Brightness.dark,
     elevation: 0.0,
     backgroundColor: Colors.transparent,
@@ -80,6 +169,7 @@ Widget _sliverAppBar({
     ],
 
     bottom: PreferredSize(
+      preferredSize: Size.fromHeight(20.0),
       child: Padding(
         padding: EdgeInsets.only(
           left: 30.0,

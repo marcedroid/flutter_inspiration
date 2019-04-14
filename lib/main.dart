@@ -12,7 +12,7 @@ void main(){
   //debugPaintSizeEnabled = false,
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
 
       title: 'Inspiración',
       theme: ThemeData.light(),
