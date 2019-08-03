@@ -46,7 +46,7 @@ class _SingleImageState extends State<SingleImage> {
                 )
               ]
             ),
-          ),
+          )
         ],
       ),
       bottomNavigationBar: _bottomNavigationBar(),

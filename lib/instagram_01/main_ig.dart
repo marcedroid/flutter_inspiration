@@ -7,8 +7,9 @@ class MainIg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*
+
     return Scaffold(
+      extendBody: true,
       backgroundColor: Colors.white,
       appBar: _appBar(context),
 
@@ -26,39 +27,6 @@ class MainIg extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: __floatingActionButton(),
       bottomNavigationBar: _bottomAppBar()
-    );
-    */
-    return Stack(
-      children: <Widget>[
-        Scaffold(
-          backgroundColor: Colors.white,
-          appBar: _appBar(context),
-
-          body: ListView(
-            scrollDirection: Axis.vertical,
-            children: <Widget>[
-              _header(),
-              _numbers(),
-              _follow(),
-              _listCircles(),
-              _gridPhotos(context)
-            ],
-          ),
-        ),
-
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SizedBox(
-            height: 94.0,
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-              floatingActionButton: __floatingActionButton(),
-              bottomNavigationBar: _bottomAppBar()
-            ),
-          ),
-        )
-      ],
     );
   }
 }
@@ -451,8 +419,7 @@ Widget _gridPhotos(BuildContext context){
   return Container(
     margin: EdgeInsets.only(
       left: 20.0,
-      right: 20.0,
-      bottom: 60.0
+      right: 20.0
     ),
     child: StaggeredGridView.count(
       physics: NeverScrollableScrollPhysics(),
