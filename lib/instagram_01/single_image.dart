@@ -15,41 +15,71 @@ class _SingleImageState extends State<SingleImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: clDarkPurple,
-      body: CustomScrollView(
-        scrollDirection: Axis.vertical,
-        slivers: <Widget>[
-          _sliverAppBar(context: context, imageId: widget.imageId),
 
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                SizedBox(height: 20.0,),
-                _listItem(
-                  image: 'w1.jpg', name: 'Janet Martin',
-                  comment: 'Our blue top is available!', likes: ''
+      body: GestureDetector(
+        onTap: (){
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: <Widget>[
+            CustomScrollView(
+              scrollDirection: Axis.vertical,
+
+              slivers: <Widget>[
+                _sliverAppBar(context: context, imageId: widget.imageId),
+
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                      [
+                        SizedBox(height: 20.0,),
+                        _listItem(
+                            image: 'w1.jpg', name: 'Janet Martin',
+                            comment: 'Our blue top is available!', likes: ''
+                        ),
+                        _listItem(
+                            image: 'w2.jpg', name: 'Zarela Reed',
+                            comment: 'Great 🔥 🔥', likes: '3 likes - Reply'
+                        ),
+                        _listItem(
+                            image: 'm1.jpg', name: 'Jake Rachel',
+                            comment: 'Lorem ipsum dolor sit amet', likes: ''
+                        ),
+                        _listItem(
+                            image: 'w3.jpg', name: 'Eusebia Kresge',
+                            comment: '😍 😍', likes: '10 likes - Reoply'
+                        ),
+                        _listItem(
+                            image: 'm2.jpg', name: 'John Meis',
+                            comment: 'Pro ex nonumes apeirian quaestio!', likes: '2 likes - Reply'
+                        ),
+                        SizedBox(height: 60.0),
+                      ]
+                  ),
                 ),
-                _listItem(
-                    image: 'w2.jpg', name: 'Zarela Reed',
-                    comment: 'Great 🔥 🔥', likes: '3 likes - Reply'
-                ),
-                _listItem(
-                    image: 'm1.jpg', name: 'Jake Rachel',
-                    comment: 'Lorem ipsum dolor sit amet', likes: ''
-                ),
-                _listItem(
-                    image: 'w3.jpg', name: 'Eusebia Kresge',
-                    comment: '😍 😍', likes: '10 likes - Reoply'
-                ),
-                _listItem(
-                    image: 'm2.jpg', name: 'John Meis',
-                    comment: 'Pro ex nonumes apeirian quaestio!', likes: '2 likes - Reply'
-                )
-              ]
+              ],
+
             ),
-          )
-        ],
+
+            Positioned(
+              bottom: 0.0,
+              left: 0.0,
+              right: 0.0,
+              child: SafeArea(
+                child: Container(
+                  child: _bottomInput(),
+                )
+              ),
+            ),
+          ],
+        )
       ),
-      bottomNavigationBar: _bottomNavigationBar(),
+
+      bottomNavigationBar: Container(
+        color: clDarkPurple,
+        child: SafeArea(child: Text("ss")),
+      ),
     );
   }
 }
@@ -303,7 +333,6 @@ Widget _sliverAppBar({
 
 Widget _bottomNavigationBar(){
   return BottomAppBar(
-    color: clDarkPurple,
     child: Padding(
       padding: EdgeInsets.symmetric(
           horizontal: 20.0,
@@ -333,6 +362,40 @@ Widget _bottomNavigationBar(){
             ),
           )
       ),
+    ),
+  );
+}
+
+Widget _bottomInput(){
+  return Container(
+    padding: EdgeInsets.symmetric(
+      horizontal: 20.0,
+      vertical: 5.0
+    ),
+    color: clDarkPurple,
+    child: InputChip(
+        onPressed: (){},
+        backgroundColor: Colors.white,
+        avatar: CircleAvatar(
+          radius: 15.0,
+          backgroundImage: AssetImage('assets/images/me.jpg'),
+        ),
+        label: TextField(
+          keyboardType: TextInputType.text,
+          style: fntRoboto.copyWith(
+              color: clFontBlack,
+              fontWeight: FontWeight.w500
+          ),
+          decoration: InputDecoration(
+              hintText: "Add a comment...",
+              hintStyle: fntRoboto.copyWith(
+                color: clFontLightGrey,
+                fontWeight: FontWeight.w500,
+              ),
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none
+          ),
+        )
     ),
   );
 }
